@@ -2,6 +2,7 @@
 
 [![.NET](https://img.shields.io/badge/.NET-10.0-blue.svg)](https://dotnet.microsoft.com/download)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![NuGet](https://img.shields.io/nuget/v/DotNet.WpfToolKit.svg)](https://www.nuget.org/packages/DotNet.WpfToolKit/)
 
 A comprehensive WPF toolkit library that provides essential components for building modern Windows desktop applications with the MVVM pattern, logging capabilities, and configuration management.
 
@@ -42,9 +43,19 @@ A comprehensive WPF toolkit library that provides essential components for build
 
 ## ?? Installation
 
-### NuGet Package (Coming Soon)
+### NuGet Package
 ```bash
 dotnet add package DotNet.WpfToolKit
+```
+
+Or via Package Manager Console in Visual Studio:
+```bash
+Install-Package DotNet.WpfToolKit
+```
+
+Or add directly to your `.csproj`:
+```xml
+<PackageReference Include="DotNet.WpfToolKit" Version="1.0.0" />
 ```
 
 ### Manual Installation
@@ -53,7 +64,7 @@ dotnet add package DotNet.WpfToolKit
 3. Reference the DLL in your WPF application
 
 ```bash
-git clone [repository-url]
+git clone https://github.com/omostan/DotNet.WpfToolkit
 cd DotNet.WpfToolKit
 dotnet build
 ```
