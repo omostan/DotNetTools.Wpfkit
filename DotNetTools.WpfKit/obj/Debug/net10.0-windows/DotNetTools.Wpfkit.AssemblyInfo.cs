@@ -17,7 +17,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyDescriptionAttribute("A comprehensive WPF toolkit library providing MVVM components, logging utilities," +
     " and configuration management for modern Windows desktop applications.")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8d1eba66da979fe4543dc1f6d39ef4f4855c2003")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+166586773b1567b8f47b9374057bd894dbab8890")]
 [assembly: System.Reflection.AssemblyProductAttribute("DotNet.WpfToolKit")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DotNetTools.Wpfkit")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

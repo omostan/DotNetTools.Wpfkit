@@ -3,6 +3,7 @@
     <File Path=".editorconfig" />
     <File Path="DotNetTools.slnx.licenseheader" />
     <File Path="README.md" />
+    <File Path="release-notes.md" />
   </Folder>
   <Project Path="DotNetTools.WpfKit.Tests/DotNetTools.Wpfkit.Tests.csproj" />
   <Project Path="DotNetTools.WpfKit/DotNetTools.Wpfkit.csproj" />

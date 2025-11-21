@@ -1,7 +1,7 @@
-# ?? DotNet.WpfToolkit v1.0.0 - Initial Release
+# ?? DotNetTools.Wpfkit v1.0.0 - Initial Release
 
 ## ?? Overview
-First official release of **DotNet.WpfToolkit** - A comprehensive toolkit for WPF application development targeting .NET 10.
+First official release of **DotNetTools.Wpfkit** - A comprehensive toolkit for WPF application development targeting .NET 10.
 
 ## ? Features
 
@@ -60,10 +60,10 @@ First official release of **DotNet.WpfToolkit** - A comprehensive toolkit for WP
 
 ```bash
 # Using .NET CLI
-dotnet add package DotNet.WpfToolkit
+dotnet add package DotNetTools.Wpfkit
 
 # Using Package Manager Console
-Install-Package DotNet.WpfToolkit
+Install-Package DotNetTools.Wpfkit
 ```
 
 ## ?? Quick Start
@@ -138,7 +138,7 @@ public class MyClass
 
 - **Target Framework**: .NET 10.0
 - **Language Version**: C# 14.0
-- **Package ID**: DotNet.WpfToolkit
+- **Package ID**: DotNetTools.Wpfkit
 - **Authors**: Stanley Omoregie
 - **Company**: Omotech Digital Solutions
 - **Copyright**: © 2025 Omotech Digital Solutions
@@ -180,10 +180,10 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## ?? Support
 
-- **Issues**: https://github.com/omostan/DotNet.WpfToolkit/issues
+- **Issues**: https://github.com/omostan/DotNetTools.Wpfkit/issues
 - **Email**: stan@omotech.com
-- **Documentation**: https://github.com/omostan/DotNet.WpfToolkit
+- **Documentation**: https://github.com/omostan/DotNetTools.Wpfkit
 
 ---
 
-**Full Changelog**: https://github.com/omostan/DotNet.WpfToolkit/commits/v1.0.0
+**Full Changelog**: https://github.com/omostan/DotNetTools.Wpfkit/commits/v1.0.0
