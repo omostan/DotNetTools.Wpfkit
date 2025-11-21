@@ -51,7 +51,7 @@ DotNetTools/
 │   ├── Logging/                   # Logging utilities
 │   ├── Database/                  # Configuration management
 │   └── README.md                  # Library documentation
-├── DotNetTools.WpfKit.Tests/     # Unit tests
+├── DotNetTools.WpfKit.Tests/      # Unit tests
 ├── .editorconfig                  # Code style configuration
 └── README.md                      # This file
 ```
