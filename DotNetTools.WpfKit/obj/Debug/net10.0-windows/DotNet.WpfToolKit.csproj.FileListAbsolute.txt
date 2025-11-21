@@ -1,0 +1,15 @@
+D:\Tutorials\DotNet\DotNet.WpfToolkit\bin\Debug\net10.0-windows\DotNet.WpfToolkit.deps.json
+D:\Tutorials\DotNet\DotNet.WpfToolkit\bin\Debug\net10.0-windows\DotNet.WpfToolkit.dll
+D:\Tutorials\DotNet\DotNet.WpfToolkit\bin\Debug\net10.0-windows\DotNet.WpfToolkit.pdb
+D:\Tutorials\DotNet\DotNet.WpfToolkit\bin\Debug\net10.0-windows\DotNet.WpfToolkit.xml
+D:\Tutorials\DotNet\DotNet.WpfToolkit\obj\Debug\net10.0-windows\DotNet.WpfToolkit.csproj.AssemblyReference.cache
+D:\Tutorials\DotNet\DotNet.WpfToolkit\obj\Debug\net10.0-windows\DotNet.WpfToolkit.GeneratedMSBuildEditorConfig.editorconfig
+D:\Tutorials\DotNet\DotNet.WpfToolkit\obj\Debug\net10.0-windows\DotNet.WpfToolkit.AssemblyInfoInputs.cache
+D:\Tutorials\DotNet\DotNet.WpfToolkit\obj\Debug\net10.0-windows\DotNet.WpfToolkit.AssemblyInfo.cs
+D:\Tutorials\DotNet\DotNet.WpfToolkit\obj\Debug\net10.0-windows\DotNet.WpfToolkit.csproj.CoreCompileInputs.cache
+D:\Tutorials\DotNet\DotNet.WpfToolkit\obj\Debug\net10.0-windows\DotNet.WpfToolkit.dll
+D:\Tutorials\DotNet\DotNet.WpfToolkit\obj\Debug\net10.0-windows\refint\DotNet.WpfToolkit.dll
+D:\Tutorials\DotNet\DotNet.WpfToolkit\obj\Debug\net10.0-windows\DotNet.WpfToolkit.xml
+D:\Tutorials\DotNet\DotNet.WpfToolkit\obj\Debug\net10.0-windows\DotNet.WpfToolkit.pdb
+D:\Tutorials\DotNet\DotNet.WpfToolkit\obj\Debug\net10.0-windows\ref\DotNet.WpfToolkit.dll
+D:\Tutorials\DotNet\DotNet.WpfToolkit\obj\Debug\net10.0-windows\DotNet.WpfToolkit.sourcelink.json

@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "0jmSWAsbxrs=",
+  "success": true,
+  "projectFilePath": "D:\\Tutorials\\DotNetTools\\DotNetTools.WpfKit\\DotNetTools.Wpfkit.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\somoregie\\.nuget\\packages\\serilog\\4.3.0\\serilog.4.3.0.nupkg.sha512",
+    "C:\\Users\\somoregie\\.nuget\\packages\\tracetool.dotnet.api\\14.0.0\\tracetool.dotnet.api.14.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path="DotNetTools.slnx.licenseheader" />
+  </Folder>
+  <Project Path="DotNetTools.WpfKit.Tests/DotNetTools.Wpfkit.Tests.csproj" />
+  <Project Path="DotNetTools.WpfKit/DotNetTools.Wpfkit.csproj" />
+</Solution>

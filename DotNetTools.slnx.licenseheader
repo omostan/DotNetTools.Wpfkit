@@ -1,0 +1,60 @@
+﻿extensions: designer.cs generated.cs
+extensions: .cs .cpp .h
+extensions: designer.cs generated.cs
+extensions: .cs .cpp .h
+extensions: designer.cs generated.cs
+extensions: .cs .cpp .h
+#region copyright
+
+/*****************************************************************************************
+*                                     ______________________________________________     *
+*                              o O   |                                              |    *
+*                     (((((  o      <               DotNet WPF Tool Kit             |    *
+*                    ( o o )         |______________________________________________|    *
+* ------------oOOO-----(_)-----OOOo----------------------------------------------------- *
+*             Project: %Project%                                                *
+*            Filename: %FileName%                                          *
+*              Author: Stanley Omoregie                                                  *
+*        Created Date: %CreationDay%.%CreationMonth%.%CreationYear%                                                        *
+*       Modified Date: %CurrentDay%.%CurrentMonth%.%CurrentYear%                                                        *
+*          Created By: Stanley Omoregie                                                  *
+*    Last Modified By: Stanley Omoregie                                                  *
+*           CopyRight: copyright © %CreationYear% Omotech Digital Solutions                        *
+*                  .oooO  Oooo.                                                          *
+*                  (   )  (   )                                                          *
+* ------------------\ (----) /---------------------------------------------------------- *
+*                    \_)  (_/                                                            *
+*****************************************************************************************/
+
+#endregion copyright
+
+extensions: .aspx .ascx
+<%-- 
+Copyright (c) 2011 rubicon IT GmbH
+--%>
+extensions: .vb
+'Sample license text.
+extensions:  .xml .config .xsd
+<!--
+Sample license text.
+-->
+extensions: .aspx .ascx
+<%-- 
+Copyright (c) 2011 rubicon IT GmbH
+--%>
+extensions: .vb
+'Sample license text.
+extensions:  .xml .config .xsd
+<!--
+Sample license text.
+-->
+extensions: .aspx .ascx
+<%-- 
+Copyright (c) 2011 rubicon IT GmbH
+--%>
+extensions: .vb
+'Sample license text.
+extensions:  .xml .config .xsd
+<!--
+Sample license text.
+-->

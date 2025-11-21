@@ -82,15 +82,36 @@ dotnet nuget remove source LocalPackages
 
 ### Step 4: Publish to NuGet.org
 
-```bash
-# Set your API key (one-time setup)
-dotnet nuget push nupkg/DotNet.WpfToolKit.1.0.0.nupkg --api-key YOUR_API_KEY_HERE --source https://api.nuget.org/v3/index.json
+**Important:** Push the main package FIRST, then optionally push symbols.
 
-# If you want to push symbols too
-dotnet nuget push nupkg/DotNet.WpfToolKit.1.0.0.snupkg --api-key YOUR_API_KEY_HERE --source https://api.nuget.org/v3/index.json
+#### 4a. Push Main Package (Required)
+
+```bash
+# Push the main .nupkg file
+dotnet nuget push nupkg/DotNet.WpfToolKit.1.0.0.nupkg \
+  --api-key YOUR_API_KEY_HERE \
+  --source https://api.nuget.org/v3/index.json
+
+# Wait for success message: "Your package was pushed."
 ```
 
-**Replace `YOUR_API_KEY_HERE` with your actual API key from Step 2.**
+**Replace `YOUR_API_KEY_HERE` with your actual API key.**
+
+#### 4b. Push Symbols Package (Optional)
+
+**Only after the main package succeeds**, you can optionally push symbols:
+
+```bash
+# Wait a few seconds for main package to be processed
+# Then push symbols (optional - provides debugging support)
+dotnet nuget push nupkg/DotNet.WpfToolKit.1.0.0.snupkg \
+  --api-key YOUR_API_KEY_HERE \
+  --source https://api.nuget.org/v3/index.json
+```
+
+**Note:** Symbols are **completely optional**. Your package works fine without them. They only provide debugging support for users who want to step into your code.
+
+?? **Common Error:** If you try to push symbols before the main package, you'll get a 404 error. Always push `.nupkg` first!
 
 ### Step 5: Verify Publication
 
@@ -128,18 +149,24 @@ dotnet build -c Release
 # 3. Create package
 dotnet pack -c Release -o ./nupkg
 
-# 4. Publish to NuGet (replace YOUR_API_KEY_HERE)
+# 4. Push MAIN package to NuGet (required)
 dotnet nuget push nupkg/DotNet.WpfToolKit.1.0.0.nupkg \
   --api-key YOUR_API_KEY_HERE \
   --source https://api.nuget.org/v3/index.json \
   --skip-duplicate
 
-# 5. Publish symbols (optional)
-dotnet nuget push nupkg/DotNet.WpfToolKit.1.0.0.snupkg \
-  --api-key YOUR_API_KEY_HERE \
-  --source https://api.nuget.org/v3/index.json \
-  --skip-duplicate
+# 5. Optionally push symbols (only AFTER step 4 succeeds!)
+# Note: This is optional - skip if unsure
+# dotnet nuget push nupkg/DotNet.WpfToolKit.1.0.0.snupkg \
+#   --api-key YOUR_API_KEY_HERE \
+#   --source https://api.nuget.org/v3/index.json \
+#   --skip-duplicate
 ```
+
+**Important Notes:**
+- Step 4 must succeed before attempting step 5
+- Step 5 (symbols) is completely optional
+- Replace `YOUR_API_KEY_HERE` with your actual API key
 
 ## After Publishing
 

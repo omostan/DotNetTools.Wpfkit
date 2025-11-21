@@ -1,7 +1,0 @@
-<Solution>
-  <Folder Name="/Solution Items/">
-    <File Path=".editorconfig" />
-  </Folder>
-  <Project Path="DotNet.WpfToolkit.Tests/DotNet.WpfToolkit.Tests.csproj" />
-  <Project Path="DotNet.WpfToolkit/DotNet.WpfToolkit.csproj" />
-</Solution>

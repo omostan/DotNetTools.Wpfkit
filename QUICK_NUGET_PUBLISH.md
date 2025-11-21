@@ -29,19 +29,25 @@ dotnet build -c Release
 # Create package
 dotnet pack -c Release -o ./nupkg
 
-# View what's in the package
+# View what's in the package (optional)
 dotnet nuget verify nupkg/DotNet.WpfToolKit.1.0.0.nupkg
 
-# Publish to NuGet
+# Publish MAIN package to NuGet (required)
 dotnet nuget push nupkg/DotNet.WpfToolKit.1.0.0.nupkg \
   --api-key $NUGET_API_KEY \
   --source https://api.nuget.org/v3/index.json
 
-# Publish symbols (optional)
-dotnet nuget push nupkg/DotNet.WpfToolKit.1.0.0.snupkg \
-  --api-key $NUGET_API_KEY \
-  --source https://api.nuget.org/v3/index.json
+# Publish symbols (optional - only after main package succeeds)
+# Uncomment if you want debugging support:
+# dotnet nuget push nupkg/DotNet.WpfToolKit.1.0.0.snupkg \
+#   --api-key $NUGET_API_KEY \
+#   --source https://api.nuget.org/v3/index.json
 ```
+
+**?? Important:** 
+- Push `.nupkg` (main package) FIRST
+- Symbols (`.snupkg`) are optional and come SECOND
+- Wait for "Your package was pushed" before pushing symbols
 
 ## All-in-One Command
 
@@ -50,7 +56,14 @@ cd DotNet.WpfToolkit && \
 dotnet clean && \
 dotnet build -c Release && \
 dotnet pack -c Release -o ./nupkg && \
-dotnet nuget push nupkg/DotNet.WpfToolKit.1.0.0.nupkg --api-key $NUGET_API_KEY --source https://api.nuget.org/v3/index.json
+dotnet nuget push nupkg/DotNet.WpfToolKit.1.0.0.nupkg \
+  --api-key $NUGET_API_KEY \
+  --source https://api.nuget.org/v3/index.json
+
+# Symbols are optional - only push if you need debugging support:
+# && dotnet nuget push nupkg/DotNet.WpfToolKit.1.0.0.snupkg \
+#   --api-key $NUGET_API_KEY \
+#   --source https://api.nuget.org/v3/index.json
 ```
 
 ## Verify Package
@@ -76,4 +89,3 @@ dotnet add package DotNet.WpfToolKit
 
 # Or specific version
 dotnet add package DotNet.WpfToolKit --version 1.0.0
-```

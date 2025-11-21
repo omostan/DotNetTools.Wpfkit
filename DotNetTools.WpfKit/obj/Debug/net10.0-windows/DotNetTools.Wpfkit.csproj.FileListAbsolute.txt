@@ -1,0 +1,15 @@
+D:\Tutorials\DotNetTools\DotNetTools.WpfKit\bin\Debug\net10.0-windows\DotNetTools.Wpfkit.deps.json
+D:\Tutorials\DotNetTools\DotNetTools.WpfKit\bin\Debug\net10.0-windows\DotNetTools.Wpfkit.dll
+D:\Tutorials\DotNetTools\DotNetTools.WpfKit\bin\Debug\net10.0-windows\DotNetTools.Wpfkit.pdb
+D:\Tutorials\DotNetTools\DotNetTools.WpfKit\bin\Debug\net10.0-windows\DotNetTools.Wpfkit.xml
+D:\Tutorials\DotNetTools\DotNetTools.WpfKit\obj\Debug\net10.0-windows\DotNetTools.Wpfkit.csproj.AssemblyReference.cache
+D:\Tutorials\DotNetTools\DotNetTools.WpfKit\obj\Debug\net10.0-windows\DotNetTools.Wpfkit.GeneratedMSBuildEditorConfig.editorconfig
+D:\Tutorials\DotNetTools\DotNetTools.WpfKit\obj\Debug\net10.0-windows\DotNetTools.Wpfkit.AssemblyInfoInputs.cache
+D:\Tutorials\DotNetTools\DotNetTools.WpfKit\obj\Debug\net10.0-windows\DotNetTools.Wpfkit.AssemblyInfo.cs
+D:\Tutorials\DotNetTools\DotNetTools.WpfKit\obj\Debug\net10.0-windows\DotNetTools.Wpfkit.csproj.CoreCompileInputs.cache
+D:\Tutorials\DotNetTools\DotNetTools.WpfKit\obj\Debug\net10.0-windows\DotNetTools.Wpfkit.sourcelink.json
+D:\Tutorials\DotNetTools\DotNetTools.WpfKit\obj\Debug\net10.0-windows\DotNetTools.Wpfkit.dll
+D:\Tutorials\DotNetTools\DotNetTools.WpfKit\obj\Debug\net10.0-windows\refint\DotNetTools.Wpfkit.dll
+D:\Tutorials\DotNetTools\DotNetTools.WpfKit\obj\Debug\net10.0-windows\DotNetTools.Wpfkit.xml
+D:\Tutorials\DotNetTools\DotNetTools.WpfKit\obj\Debug\net10.0-windows\DotNetTools.Wpfkit.pdb
+D:\Tutorials\DotNetTools\DotNetTools.WpfKit\obj\Debug\net10.0-windows\ref\DotNetTools.Wpfkit.dll

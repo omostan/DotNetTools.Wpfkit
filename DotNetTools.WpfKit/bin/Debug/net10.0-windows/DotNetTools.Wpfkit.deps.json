@@ -1,0 +1,57 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "DotNetTools.Wpfkit/1.0.0": {
+        "dependencies": {
+          "Serilog": "4.3.0",
+          "Tracetool.DotNet.Api": "14.0.0"
+        },
+        "runtime": {
+          "DotNetTools.Wpfkit.dll": {}
+        }
+      },
+      "Serilog/4.3.0": {
+        "runtime": {
+          "lib/net9.0/Serilog.dll": {
+            "assemblyVersion": "4.3.0.0",
+            "fileVersion": "4.3.0.0"
+          }
+        }
+      },
+      "Tracetool.DotNet.Api/14.0.0": {
+        "runtime": {
+          "lib/netstandard2.0/TraceTool.dll": {
+            "assemblyVersion": "14.0.0.0",
+            "fileVersion": "14.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "DotNetTools.Wpfkit/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Serilog/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+cDryFR0GRhsGOnZSKwaDzRRl4MupvJ42FhCE4zhQRVanX0Jpg6WuCBk59OVhVDPmab1bB+nRykAnykYELA9qQ==",
+      "path": "serilog/4.3.0",
+      "hashPath": "serilog.4.3.0.nupkg.sha512"
+    },
+    "Tracetool.DotNet.Api/14.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rSKdveZ66XBMTJZIlTlYy64tC2mTd9LX6tvWLR/8slq9e3eQJmMQvXDOZsz7mTG+gXFTR/WJhOUILgyqlt6LnQ==",
+      "path": "tracetool.dotnet.api/14.0.0",
+      "hashPath": "tracetool.dotnet.api.14.0.0.nupkg.sha512"
+    }
+  }
+}
