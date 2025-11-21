@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyCopyrightAttribute("Copyright � 2025 Omotech Digital Solutions")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b507065def90e9653aa2ce75ecc978d6d13af3af")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8d1eba66da979fe4543dc1f6d39ef4f4855c2003")]
 [assembly: System.Reflection.AssemblyProductAttribute("DotNet.WpfToolKit")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DotNetTools.Wpfkit.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,10 +1,10 @@
-# DotNet Solution
+# DotNetTools Solution
 
-A modern .NET 10.0 solution containing the **DotNet.WpfToolKit** library.
+A modern .NET 10.0 solution containing the **DotNetTools.Wpfkit** library.
 
 ## ?? Projects
 
-### DotNet.WpfToolKit
+### DotNetTools.Wpfkit
 A comprehensive WPF toolkit library providing essential components for building modern Windows desktop applications.
 
 **Key Features:**
@@ -13,7 +13,7 @@ A comprehensive WPF toolkit library providing essential components for building 
 - Configuration management utilities
 - .NET 10.0 support with modern C# features
 
-[View Library README](./DotNet.WpfToolKit/README.md)
+[View Library README](./DotNetTools.WpfKit/README.md)
 
 ## ?? Requirements
 
@@ -44,13 +44,14 @@ dotnet test
 ## ?? Solution Structure
 
 ```
-DotNet/
-??? DotNet.slnx                    # Solution file
-??? DotNet.WpfToolKit/             # WPF Toolkit library
+DotNetTools/
+??? DotNetTools.slnx               # Solution file
+??? DotNetTools.WpfKit/            # WPF Toolkit library
 ?   ??? MvvM/                      # MVVM components
 ?   ??? Logging/                   # Logging utilities
 ?   ??? Database/                  # Configuration management
 ?   ??? README.md                  # Library documentation
+??? DotNetTools.WpfKit.Tests/     # Unit tests
 ??? .editorconfig                  # Code style configuration
 ??? README.md                      # This file
 ```
@@ -72,7 +73,7 @@ DotNet/
 
 ### Building from Source
 1. Clone the repository
-2. Open `DotNet.slnx` in Visual Studio
+2. Open `DotNetTools.slnx` in Visual Studio
 3. Restore NuGet packages
 4. Build the solution (Ctrl+Shift+B)
 
@@ -81,7 +82,7 @@ This solution uses `.editorconfig` to maintain consistent code style across the 
 
 ## ?? Documentation
 
-- [DotNet.WpfToolKit Library Documentation](./DotNet.WpfToolKit/README.md)
+- [DotNetTools.Wpfkit Library Documentation](./DotNetTools.WpfKit/README.md)
 
 ## ?? Contributing
 
