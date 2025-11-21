@@ -39,4 +39,4 @@ Desktop.ini
 *.log
 *.bak
 *~
-*.ps1
+#*.ps1
