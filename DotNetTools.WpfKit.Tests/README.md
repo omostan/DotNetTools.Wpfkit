@@ -2,11 +2,11 @@
 
 Unit tests for the DotNetTools.Wpfkit library.
 
-## ?? Overview
+## 📋 Overview
 
-This project contains comprehensive unit tests for all components of the DotNet.WpfToolKit library, ensuring reliability and maintaining code quality.
+This project contains comprehensive unit tests for all components of the DotNetTools.Wpfkit library, ensuring reliability and maintaining code quality.
 
-## ?? Test Framework
+## 🧪 Test Framework
 
 - **Testing Framework**: xUnit 2.9.2
 - **Assertion Library**: FluentAssertions 6.12.2
@@ -14,30 +14,36 @@ This project contains comprehensive unit tests for all components of the DotNet.
 - **Code Coverage**: Coverlet 6.0.2
 - **Target Framework**: .NET 10.0
 
-## ?? Test Organization
+## 📁 Test Organization
 
 Tests are organized by component with clear separation of concerns:
 
 ```
 DotNetTools.Wpfkit.Tests/
-??? MvvM/
-?   ??? ObservableObjectTests.cs          # Tests for ObservableObject
-?   ??? BaseViewModelTests.cs              # Tests for BaseViewModel
-?   ??? ObservableRangeCollectionTests.cs  # Tests for ObservableRangeCollection
-??? Logging/
-?   ??? LogManagerTests.cs                 # Tests for LogManager
-??? Database/
-    ??? AppSettingsUpdaterTests.cs         # Tests for AppSettingsUpdater
+├── MvvM/
+|   ├── ObservableObjectTests.cs          # Tests for ObservableObject
+|   ├── BaseViewModelTests.cs             # Tests for BaseViewModel
+|   ├── ObservableRangeCollectionTests.cs # Tests for ObservableRangeCollection
+├── Logging/
+|   ├── Extensions/
+|   |   └── LogManagerTests.cs            # Tests for LogManager
+|   |   └── UserNameTests.cs              # Tests for Username helper
+|   └── Enrichers/
+|       └── UserNameEnricherTests.cs      # Tests for Serilog enricher
+├── Database/
+|   └── AppSettingsUpdaterTests.cs        # Tests for AppSettingsUpdater
+└── DotNetTools.Wpfkit.csproj
 ```
 
-## ?? Running Tests
+## 🚀 Running Tests
 
 ### Visual Studio
-1. Open Test Explorer (Test ? Test Explorer)
+1. Open Test Explorer (Test → Test Explorer)
 2. Click "Run All" to execute all tests
 3. View results in Test Explorer window
 
 ### Command Line
+
 
 ```bash
 # Run all tests
@@ -62,7 +68,7 @@ dotnet test --collect:"XPlat Code Coverage" --results-directory ./TestResults
 ### CI/CD
 Tests are automatically run in the GitHub Actions pipeline on every push and pull request.
 
-## ?? Test Coverage
+## 📊 Test Coverage
 
 ### Current Coverage by Component
 
@@ -76,7 +82,7 @@ Tests are automatically run in the GitHub Actions pipeline on every push and pul
 
 **Total**: 140+ test methods
 
-## ?? Test Categories
+## 📝 Test Categories
 
 ### 1. Unit Tests
 - Test individual methods and properties
@@ -103,147 +109,7 @@ Tests are automatically run in the GitHub Actions pipeline on every push and pul
 - Response time validation
 - Resource usage checks
 
-## ?? Test Examples
-
-### Testing ObservableObject
-
-```csharp
-[Fact]
-public void SetProperty_WhenValueChanges_ShouldRaisePropertyChanged()
-{
-    // Arrange
-    var obj = new TestObservableObject();
-    var eventRaised = false;
-    obj.PropertyChanged += (sender, args) => eventRaised = true;
-
-    // Act
-    obj.Name = "John";
-
-    // Assert
-    eventRaised.Should().BeTrue();
-}
-```
-
-### Testing BaseViewModel
-
-```csharp
-[Fact]
-public void IsBusy_WhenSetToTrue_ShouldSetIsNotBusyToFalse()
-{
-    // Arrange
-    var viewModel = new BaseViewModel();
-
-    // Act
-    viewModel.IsBusy = true;
-
-    // Assert
-    viewModel.IsBusy.Should().BeTrue();
-    viewModel.IsNotBusy.Should().BeFalse();
-}
-```
-
-### Testing ObservableRangeCollection
-
-```csharp
-[Fact]
-public void AddRange_WithValidCollection_ShouldAddAllItems()
-{
-    // Arrange
-    var collection = new ObservableRangeCollection<int> { 1, 2, 3 };
-    var newItems = new[] { 4, 5, 6 };
-
-    // Act
-    collection.AddRange(newItems);
-
-    // Assert
-    collection.Should().HaveCount(6);
-    collection.Should().Equal(1, 2, 3, 4, 5, 6);
-}
-```
-
-## ?? Test Utilities
-
-### FluentAssertions
-We use FluentAssertions for readable and expressive assertions:
-
-```csharp
-// Instead of:
-Assert.Equal(expected, actual);
-
-// We use:
-actual.Should().Be(expected);
-
-// Collections
-collection.Should().HaveCount(5);
-collection.Should().Contain(item);
-collection.Should().BeEmpty();
-
-// Exceptions
-action.Should().Throw<ArgumentNullException>();
-action.Should().NotThrow();
-
-// Types
-obj.Should().BeAssignableTo<INotifyPropertyChanged>();
-```
-
-### Test Patterns
-
-#### Arrange-Act-Assert (AAA)
-```csharp
-[Fact]
-public void MethodName_Scenario_ExpectedBehavior()
-{
-    // Arrange - Setup test data
-    var sut = new SystemUnderTest();
-    
-    // Act - Execute the method
-    var result = sut.Method();
-    
-    // Assert - Verify the result
-    result.Should().Be(expected);
-}
-```
-
-## ?? Debugging Tests
-
-### Visual Studio
-1. Set breakpoints in test methods
-2. Right-click test ? Debug Test(s)
-3. Use Test Explorer to navigate to failures
-
-### Command Line
-```bash
-# Run tests in debug mode
-dotnet test --logger "console;verbosity=detailed"
-
-# Run specific failing test
-dotnet test --filter "FullyQualifiedName~FailingTestName" --logger "console;verbosity=detailed"
-```
-
-## ?? Code Coverage Reports
-
-### Generate Coverage Report
-
-```bash
-# Install ReportGenerator
-dotnet tool install -g dotnet-reportgenerator-globaltool
-
-# Run tests with coverage
-dotnet test --collect:"XPlat Code Coverage"
-
-# Generate HTML report
-reportgenerator -reports:"**/coverage.cobertura.xml" -targetdir:"coveragereport" -reporttypes:Html
-
-# Open report
-start coveragereport/index.html
-```
-
-### Coverage Goals
-- **Minimum**: 80% code coverage
-- **Target**: 90% code coverage
-- **Ideal**: 95%+ code coverage
-
-## ?? Best Practices
+## 💡 Best Practices
 
 ### Test Naming
 - Use descriptive names: `MethodName_Scenario_ExpectedBehavior`
@@ -260,55 +126,7 @@ start coveragereport/index.html
 - Test edge cases (null, empty, boundary values)
 - Test both success and failure paths
 
-### Async Testing
-```csharp
-[Fact]
-public async Task AsyncMethod_ShouldCompleteSuccessfully()
-{
-    // Arrange
-    var service = new TestService();
-    
-    // Act
-    await service.DoWorkAsync();
-    
-    // Assert
-    service.WorkCompleted.Should().BeTrue();
-}
-```
-
-### Thread Safety Testing
-```csharp
-[Fact]
-public void Method_WithConcurrentAccess_ShouldBeThreadSafe()
-{
-    // Arrange
-    var obj = new ThreadSafeObject();
-    var tasks = new List<Task>();
-    
-    // Act
-    for (int i = 0; i < 10; i++)
-    {
-        tasks.Add(Task.Run(() => obj.Method()));
-    }
-    
-    Task.WaitAll(tasks.ToArray());
-    
-    // Assert
-    // Verify no exceptions and correct state
-}
-```
-
-## ?? Continuous Integration
-
-Tests run automatically on:
-- Every push to main/develop
-- Every pull request
-- Scheduled nightly builds
-
-### CI Configuration
-See `.github/workflows/dotnet.yml` for the complete CI/CD pipeline configuration.
-
-## ?? Contributing Tests
+## 🤝 Contributing Tests
 
 When adding new features to DotNetTools.Wpfkit:
 
@@ -331,7 +149,7 @@ When adding new features to DotNetTools.Wpfkit:
 - [ ] Tests are deterministic (no random failures)
 - [ ] Test names are descriptive
 
-## ?? Additional Resources
+## 📚 Additional Resources
 
 ### xUnit
 - [xUnit Documentation](https://xunit.net/)
@@ -349,7 +167,7 @@ When adding new features to DotNetTools.Wpfkit:
 - [Coverlet Documentation](https://github.com/coverlet-coverage/coverlet)
 - [ReportGenerator](https://github.com/danielpalme/ReportGenerator)
 
-## ?? Support
+## 📧 Support
 
 For test-related questions:
 - Review existing tests for patterns
@@ -359,6 +177,6 @@ For test-related questions:
 
 ---
 
-**Test Status**: ? 140+ tests | 90%+ coverage | All passing
+**Test Status**: ✅ 140+ tests | 90%+ coverage | All passing
 
 **Last Updated**: November 20, 2025

@@ -2,7 +2,7 @@
 
 A modern .NET 10.0 solution containing the **DotNetTools.Wpfkit** library.
 
-## ?? Projects
+## 📂 Projects
 
 ### DotNetTools.Wpfkit
 A comprehensive WPF toolkit library providing essential components for building modern Windows desktop applications.
@@ -15,13 +15,13 @@ A comprehensive WPF toolkit library providing essential components for building 
 
 [View Library README](./DotNetTools.WpfKit/README.md)
 
-## ?? Requirements
+## 📋 Requirements
 
 - **.NET 10.0 SDK or later**
 - **Visual Studio 2022** or later (recommended)
 - **Windows OS** (for WPF projects)
 
-## ?? Getting Started
+## 🚀 Getting Started
 
 ### Build the Solution
 
@@ -41,22 +41,22 @@ dotnet build -c Release
 dotnet test
 ```
 
-## ?? Solution Structure
+## 📁 Solution Structure
 
 ```
 DotNetTools/
-??? DotNetTools.slnx               # Solution file
-??? DotNetTools.WpfKit/            # WPF Toolkit library
-?   ??? MvvM/                      # MVVM components
-?   ??? Logging/                   # Logging utilities
-?   ??? Database/                  # Configuration management
-?   ??? README.md                  # Library documentation
-??? DotNetTools.WpfKit.Tests/     # Unit tests
-??? .editorconfig                  # Code style configuration
-??? README.md                      # This file
+├── DotNetTools.slnx               # Solution file
+├── DotNetTools.WpfKit/            # WPF Toolkit library
+│   ├── MvvM/                      # MVVM components
+│   ├── Logging/                   # Logging utilities
+│   ├── Database/                  # Configuration management
+│   └── README.md                  # Library documentation
+├── DotNetTools.WpfKit.Tests/     # Unit tests
+├── .editorconfig                  # Code style configuration
+└── README.md                      # This file
 ```
 
-## ?? Technology Stack
+## 🛠️ Technology Stack
 
 - **.NET 10.0** - Latest .NET framework
 - **C# 13** - Modern language features
@@ -64,7 +64,7 @@ DotNetTools/
 - **Serilog** - Structured logging
 - **SDK-style projects** - Modern project format
 
-## ??? Development
+## ⚙️ Development
 
 ### Prerequisites
 - Visual Studio 2022 (17.12 or later)
@@ -80,11 +80,11 @@ DotNetTools/
 ### Code Style
 This solution uses `.editorconfig` to maintain consistent code style across the codebase. Please ensure your IDE respects these settings.
 
-## ?? Documentation
+## 📚 Documentation
 
 - [DotNetTools.Wpfkit Library Documentation](./DotNetTools.WpfKit/README.md)
 
-## ?? Contributing
+## 🤝 Contributing
 
 Contributions are welcome! Please:
 1. Fork the repository
@@ -93,16 +93,16 @@ Contributions are welcome! Please:
 4. Add tests for new features
 5. Submit a pull request
 
-## ?? License
+## 📄 License
 
-Copyright � 2025 Omotech Digital Solutions  
+Copyright © 2025 Omotech Digital Solutions  
 All rights reserved.
 
-## ?? Contact
+## 📧 Contact
 
 **Author**: Stanley Omoregie  
 **Organization**: Omotech Digital Solutions
 
 ---
 
-**Built with modern .NET technologies** ??
+**Built with modern .NET technologies** 💻

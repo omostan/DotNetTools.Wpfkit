@@ -1,9 +1,9 @@
-# ?? DotNetTools.Wpfkit v1.0.0 - Initial Release
+# 🚀 DotNetTools.Wpfkit v1.0.0 - Initial Release
 
-## ?? Overview
+## 📋 Overview
 First official release of **DotNetTools.Wpfkit** - A comprehensive toolkit for WPF application development targeting .NET 10.
 
-## ? Features
+## ✨ Features
 
 ### MVVM Components
 - **ObservableObject**: Base class implementing `INotifyPropertyChanged` with helper methods
@@ -36,7 +36,7 @@ First official release of **DotNetTools.Wpfkit** - A comprehensive toolkit for W
   - Section-based configuration updates
   - JSON serialization support
 
-## ?? Highlights
+## 🎯 Highlights
 
 ### High Performance
 - ObservableRangeCollection reduces UI notifications from O(n) to O(1)
@@ -56,105 +56,141 @@ First official release of **DotNetTools.Wpfkit** - A comprehensive toolkit for W
 - Test documentation and patterns
 - Best practices guidance
 
-## ?? Installation
+## 📦 Installation
 
-```bash
-# Using .NET CLI
+### Using .NET CLI
+
+````dotnetcli
 dotnet add package DotNetTools.Wpfkit
+````
 
-# Using Package Manager Console
+### Using Package Manager Console
+
+````dotnetcli
 Install-Package DotNetTools.Wpfkit
-```
+````
 
-## ?? Quick Start
+## 🚀 Quick Start
 
 ### Using ObservableObject
-```csharp
+
+````csharp
+
 public class Person : ObservableObject
 {
-    private string _name;
-    public string Name
-    {
-        get => _name;
-        set => SetProperty(ref _name, value);
-    }
+	private string _name;
+	
+	public string Name
+	{
+		get => _name; set => SetProperty(ref _name, value);
+	}
 }
-```
+
+````
 
 ### Using BaseViewModel
-```csharp
+
+````csharp
+
 public class MainViewModel : BaseViewModel
 {
-    public MainViewModel()
-    {
-        Title = "Main View";
-    }
+	public MainViewModel()
+	{
+		Title = "Main View";
+	}
 
-    public async Task LoadDataAsync()
-    {
-        IsBusy = true;
-        try
-        {
-            // Load data...
-        }
-        finally
-        {
-            IsBusy = false;
-        }
-    }
+	public async Task LoadDataAsync()
+	{
+		IsBusy = true;
+
+		try
+		{
+			// Load data...
+		}
+		finally
+		{
+			IsBusy = false;
+		}
+	}
 }
-```
+
+````
+
+````csharp
+
+public class EmployeeViewModel : BaseViewModel
+{
+	public ObservableRangeCollection<Employee> Employees { get; } = new ObservableRangeCollection<Employee>();
+
+	public void LoadEmployees(IEnumerable<Employee> employees)
+	{
+		// Clear existing employees
+		Employees.Clear();
+
+		// Add new employees
+		Employees.AddRange(employees);
+	}
+}
+
+````
 
 ### Using ObservableRangeCollection
-```csharp
+
+````csharp
+
 var collection = new ObservableRangeCollection<int>();
 
-// Bulk operations
-collection.AddRange(Enumerable.Range(1, 1000));
+// Bulk operations collection.AddRange(Enumerable.Range(1, 1000));
+
 collection.RemoveRange(itemsToRemove);
+
 collection.ReplaceRange(newItems);
-```
+
+````
 
 ### Using LogManager
-```csharp
+
+````csharp
 public class MyClass
 {
-    private static readonly ILogger _logger = LogManager.GetCurrentClassLogger();
+	private static readonly ILogger _logger = LogManager.GetCurrentClassLogger();
 
-    public void MyMethod()
-    {
-        _logger.Me().Information("Method called");
-    }
+	public void MyMethod()
+	{
+		_logger.Me().Information("Method called");
+	}
 }
-```
 
-## ?? Requirements
+````
+
+
+## ⚙️ Requirements
 
 - **.NET 10.0** or later
 - **Serilog 4.1.0** (for logging features)
 - **Microsoft.Extensions.Configuration** (for configuration features)
 
-## ?? Package Information
+## 📦 Package Information
 
 - **Target Framework**: .NET 10.0
 - **Language Version**: C# 14.0
 - **Package ID**: DotNetTools.Wpfkit
 - **Authors**: Stanley Omoregie
 - **Company**: Omotech Digital Solutions
-- **Copyright**: � 2025 Omotech Digital Solutions
+- **Copyright**: © 2025 Omotech Digital Solutions
 
-## ?? Bug Fixes
+## 🐛 Bug Fixes
 
 This release includes fixes for:
 - Test isolation issues with LogManager tests
 - Proper disposal of logger resources
 - Thread safety in test execution
 
-## ?? Breaking Changes
+## ⚠️ Breaking Changes
 
 None (initial release)
 
-## ??? Roadmap
+## 🗺️ Roadmap
 
 Planned features for future releases:
 - Additional MVVM helpers (RelayCommand, AsyncRelayCommand)
@@ -164,21 +200,21 @@ Planned features for future releases:
 - Dependency injection helpers
 - More database utilities
 
-## ?? Contributing
+## 🤝 Contributing
 
 Contributions are welcome! Please read our contributing guidelines and submit pull requests.
 
-## ?? License
+## 📜 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## ?? Acknowledgments
+## 👏 Acknowledgments
 
 - Built with modern .NET 10 features
 - Follows WPF best practices
 - Inspired by community feedback and real-world usage
 
-## ?? Support
+## 🆘 Support
 
 - **Issues**: https://github.com/omostan/DotNetTools.Wpfkit/issues
 - **Email**: stan@omotech.com

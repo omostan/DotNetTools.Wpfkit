@@ -4,11 +4,11 @@
 [![NuGet](https://img.shields.io/nuget/v/DotNetTools.Wpfkit.svg)](https://www.nuget.org/packages/DotNetTools.Wpfkit/)
 [![NuGet Downloads](https://img.shields.io/nuget/dt/DotNetTools.Wpfkit.svg)](https://www.nuget.org/packages/DotNetTools.Wpfkit/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![GitHub Release](https://img.shields.io/github/v/release/omostan/DotNet.WpfToolkit)](https://github.com/omostan/DotNet.WpfToolkit/releases)
+[![GitHub Release](https://img.shields.io/github/v/release/omostan/DotNetTools.Wpfkit)](https://github.com/omostan/DotNetTools.Wpfkit/releases)
 
 A comprehensive WPF toolkit library that provides essential components for building modern Windows desktop applications with the MVVM pattern, logging capabilities, and configuration management.
 
-## ?? Table of Contents
+## 📑 Table of Contents
 
 - [Overview](#overview)
 - [Features](#features)
@@ -23,11 +23,11 @@ A comprehensive WPF toolkit library that provides essential components for build
 - [License](#license)
 - [Contact](#contact)
 
-## ?? Overview
+## 📋 Overview
 
 **DotNetTools.Wpfkit** is a modern .NET library designed to accelerate WPF application development by providing reusable, production-ready components. Built on .NET 10.0, it embraces modern C# features including nullable reference types, implicit usings, and follows best practices for WPF development.
 
-## ? Features
+## ✨ Features
 
 ### MVVM Pattern Support
 - **ObservableObject**: Base class implementing `INotifyPropertyChanged` with helper methods
@@ -43,7 +43,7 @@ A comprehensive WPF toolkit library that provides essential components for build
 - **AppSettingsUpdater**: Utility for runtime appsettings.json manipulation
 - **Connection String Management**: Easy database connection string updates
 
-## ?? Installation
+## 📦 Installation
 
 ### NuGet Package
 ```bash
@@ -71,7 +71,7 @@ cd DotNetTools.Wpfkit
 dotnet build
 ```
 
-## ?? Requirements
+## 📋 Requirements
 
 - **.NET 10.0 or later**
 - **Windows OS** (for WPF support)
@@ -81,12 +81,13 @@ dotnet build
 - **Serilog** (v4.3.0+): Structured logging
 - **Tracetool.DotNet.Api** (v14.0.0+): Advanced tracing capabilities
 
-## ?? Usage
+## 🚀 Usage
 
 ### MVVM Components
 
 #### ObservableObject
 Base class for implementing property change notifications:
+
 
 ```csharp
 using DotNetTools.Wpfkit.MvvM;
@@ -254,8 +255,7 @@ AppSettingsUpdater.UpdateConnectionString(connectionString);
   "OtherSettings": "..."
 }
 ```
-
-## ?? API Reference
+## 📚 API Reference
 
 ### MvvM Namespace
 
@@ -276,33 +276,37 @@ protected bool SetProperty<T>(
 - **Returns**: `true` if property changed, `false` otherwise
 
 #### BaseViewModel Properties
-| Property | Type | Description |
-|----------|------|-------------|
-| Title | string | Main title text |
-| Subtitle | string | Secondary descriptive text |
-| Icon | string | Icon path or resource identifier |
-| IsBusy | bool | Indicates if operation is in progress |
-| IsNotBusy | bool | Inverse of IsBusy (auto-synchronized) |
-| CanLoadMore | bool | Supports pagination scenarios |
-| Header | string | Header content |
-| Footer | string | Footer content |
+
+| Property    | Type   | Description                           |
+|-------------|--------|---------------------------------------|
+| Title       | string | Main title text                       |
+| Subtitle    | string | Secondary descriptive text            |
+| Icon        | string | Icon path or resource identifier      |
+| IsBusy      | bool   | Indicates if operation is in progress |
+| IsNotBusy   | bool   | Inverse of IsBusy (auto-synchronized) |
+| CanLoadMore | bool   | Supports pagination scenarios         |
+| Header      | string | Header content                        |
+| Footer      | string | Footer content                        |
 
 #### ObservableRangeCollection<T> Methods
+
 ```csharp
-void AddRange(IEnumerable<T> collection, 
-              NotifyCollectionChangedAction notificationMode = Add)
-void RemoveRange(IEnumerable<T> collection, 
-                 NotifyCollectionChangedAction notificationMode = Reset)
+void AddRange(IEnumerable<T> collection, NotifyCollectionChangedAction notificationMode = Add)
+void RemoveRange(IEnumerable<T> collection, NotifyCollectionChangedAction notificationMode = Reset)
 void Replace(T item)
 void ReplaceRange(IEnumerable<T> collection)
+
 ```
 
 ### Logging Namespace
 
 #### LogManager
+
 ```csharp
+
 static ILogger GetCurrentClassLogger()
 static ILogger Me(this ILogger logger, int sourceLineNumber = 0)
+
 ```
 
 ### Database Namespace
@@ -312,24 +316,26 @@ static ILogger Me(this ILogger logger, int sourceLineNumber = 0)
 static void UpdateConnectionString(string connectionString)
 ```
 
-## ??? Architecture
+## 🏗️ Architecture
 
 ### Project Structure
+
 ```
 DotNetTools.Wpfkit/
-??? MvvM/
-?   ??? ObservableObject.cs          # Base observable implementation
-?   ??? BaseViewModel.cs              # Rich view model base class
-?   ??? ObservableRangeCollection.cs  # Bulk operations collection
-??? Logging/
-?   ??? Extensions/
-?   ?   ??? LogManager.cs             # Logger factory
-?   ?   ??? UserName.cs               # Username helper
-?   ??? Enrichers/
-?       ??? UserNameEnricher.cs       # Serilog enricher
-??? Database/
-?   ??? AppSettingsUpdater.cs         # Configuration management
-??? DotNetTools.Wpfkit.csproj
+├── MvvM/
+|   ├── ObservableObject.cs          # Base observable implementation
+|   ├── BaseViewModel.cs             # Rich view model base class
+|   ├── ObservableRangeCollection.cs # Bulk operations collection
+├── Logging/
+|   ├── Extensions/
+|   |   └── LogManager.cs            # Logger factory
+|   |   └── UserName.cs              # Username helper
+|   └── Enrichers/
+|       └── UserNameEnricher.cs      # Serilog enricher
+├── Database/
+|   └── AppSettingsUpdater.cs        # Configuration management
+└── DotNetTools.Wpfkit.csproj
+
 ```
 
 ### Design Principles
@@ -339,7 +345,7 @@ DotNetTools.Wpfkit/
 - **Performance**: Optimized bulk operations in collections
 - **Type Safety**: Leverages nullable reference types
 
-## ?? Contributing
+## 🤝 Contributing
 
 Contributions are welcome! Please follow these guidelines:
 
@@ -356,14 +362,14 @@ Contributions are welcome! Please follow these guidelines:
 - Include unit tests for new features
 - Maintain the existing copyright header format
 
-## ?? License
+## 📜 License
 
-Copyright � 2025 **Omotech Digital Solutions**  
+Copyright © 2025 **Omotech Digital Solutions**  
 Licensed under the [MIT License](LICENSE).
 
 This project is open source software created by [Stanley Omoregie](mailto:stan@omotech.com).
 
-## ?? Contact
+## 📧 Contact
 
 **Author**: [Stanley Omoregie](mailto:stan@omotech.com)  
 **Organization**: Omotech Digital Solutions  
@@ -373,7 +379,7 @@ For questions, issues, or feature requests, please open an issue on the reposito
 
 ---
 
-## ?? Version History
+## 🔖 Version History
 
 ### Version 1.0.0 (2025-11-20)
 - Initial release
@@ -384,7 +390,7 @@ For questions, issues, or feature requests, please open an issue on the reposito
 
 ---
 
-## ?? Learning Resources
+## 📖 Learning Resources
 
 ### WPF & MVVM
 - [Microsoft WPF Documentation](https://docs.microsoft.com/wpf)
@@ -399,4 +405,4 @@ For questions, issues, or feature requests, please open an issue on the reposito
 
 ---
 
-**Built with ?? using .NET 10.0 and modern C# features**
+**Built with ❤️ using .NET 10.0 and modern C# features**
