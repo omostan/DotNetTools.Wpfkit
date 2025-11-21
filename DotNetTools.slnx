@@ -2,6 +2,8 @@
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
     <File Path="DotNetTools.slnx.licenseheader" />
+    <File Path="DotNetTools.WpfKit.Tests/README.md" />
+    <File Path="DotNetTools.WpfKit/ICON_GUIDE.md" />
     <File Path="README.md" />
     <File Path="release-notes.md" />
   </Folder>
