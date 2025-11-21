@@ -1,6 +1,19 @@
 # DotNetTools Solution
 
+[![NuGet](https://img.shields.io/nuget/v/DotNetTools.Wpfkit.svg)](https://www.nuget.org/packages/DotNetTools.Wpfkit/)
+[![NuGet Downloads](https://img.shields.io/nuget/dt/DotNetTools.Wpfkit.svg)](https://www.nuget.org/packages/DotNetTools.Wpfkit/)
+[![.NET](https://img.shields.io/badge/.NET-10.0-blue.svg)](https://dotnet.microsoft.com/download)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
 A modern .NET 10.0 solution containing the **DotNetTools.Wpfkit** library.
+
+## 📦 NuGet Package
+
+```bash
+dotnet add package DotNetTools.Wpfkit
+```
+
+**Package Page:** https://www.nuget.org/packages/DotNetTools.Wpfkit/
 
 ## 📂 Projects
 
