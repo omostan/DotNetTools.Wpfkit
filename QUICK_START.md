@@ -32,6 +32,82 @@ dotnet test
 
 ---
 
+## 🎯 Quick Command Examples
+
+### Simple Synchronous Command
+
+```csharp
+using DotNetTools.Wpfkit.Commands;
+using DotNetTools.Wpfkit.MvvM;
+
+public class MyViewModel : BaseViewModel
+{
+    public ICommand SaveCommand { get; }
+    
+    public MyViewModel()
+    {
+        SaveCommand = new ActionCommand(
+            action: param => SaveData(),
+            predicate: param => CanSave()
+        );
+    }
+    
+    private void SaveData() 
+    {
+        // Save logic
+    }
+    
+    private bool CanSave() => !string.IsNullOrEmpty(Data);
+}
+```
+
+### Asynchronous Command
+
+```csharp
+using DotNetTools.Wpfkit.Commands;
+
+public class MyViewModel : BaseViewModel
+{
+    public ICommand LoadDataCommand { get; }
+    
+    public MyViewModel()
+    {
+        LoadDataCommand = new AsyncRelayCommand(
+            callback: async () => await LoadDataAsync(),
+            onException: ex => ShowError(ex.Message)
+        );
+    }
+    
+    private async Task LoadDataAsync()
+    {
+        IsBusy = true;
+        try
+        {
+            var data = await _apiClient.GetDataAsync();
+            Items.ReplaceRange(data);
+        }
+        finally
+        {
+            IsBusy = false;
+        }
+    }
+    
+    private void ShowError(string message)
+    {
+        // Display error to user
+    }
+}
+```
+
+### XAML Binding
+
+```xml
+<Button Content="Save" Command="{Binding SaveCommand}"/>
+<Button Content="Load" Command="{Binding LoadDataCommand}"/>
+```
+
+---
+
 ## 📝 Manual Step Required
 
 ### Add Test Project to DotNet.slnx
@@ -110,6 +186,29 @@ dotnet clean
 | `APP_MODERNIZATION_REFERENCE.md` | Complete process reference |
 | `CONTRIBUTING.md` | How to contribute |
 | `CHANGELOG.md` | Version history |
+
+---
+
+## 🎯 Feature Highlights
+
+### ✨ New in v1.0.2: Command Infrastructure
+
+The toolkit now includes a complete command implementation framework:
+
+**Synchronous Commands:**
+- `CommandBase` - Abstract base for custom commands
+- `ActionCommand` - Parameterized command with predicate support
+- `RelayCommand` - Internal relay implementation
+
+**Asynchronous Commands:**
+- `AsyncCommandBase` - Base for async operations
+- `AsyncRelayCommand` - Async command with built-in exception handling
+
+**Key Features:**
+- 🔒 Automatic concurrent execution prevention
+- 🎯 Built-in exception handling and logging
+- ⚡ Seamless MVVM integration
+- 🔄 Automatic UI state management
 
 ---
 

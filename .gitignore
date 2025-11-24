@@ -10,6 +10,12 @@ out/
 [Dd]ebug/
 [Rr]elease/
 
+# Project-specific build folders
+DotNetTools.WpfKit/bin/
+DotNetTools.WpfKit/obj/
+DotNetTools.WpfKit.Tests/bin/
+DotNetTools.WpfKit.Tests/obj/
+
 # NuGet Packages - DO NOT commit
 *.nupkg
 *.snupkg
@@ -54,3 +60,6 @@ POST_PUBLICATION_CHECKLIST.md
 NUGET_PUBLISHING_SUMMARY.md
 NUGET_PUBLISHING_CHECKLIST.md
 MODERNIZATION_SUMMARY.md
+DOCUMENTATION_COMPLETION_REPORT.md
+COMMANDS_DOCUMENTATION_SUMMARY.md
+DotNetTools.WpfKit.Tests/bin

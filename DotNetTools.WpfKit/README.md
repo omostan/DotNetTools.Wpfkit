@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![GitHub Release](https://img.shields.io/github/v/release/omostan/DotNetTools.Wpfkit)](https://github.com/omostan/DotNetTools.Wpfkit/releases)
 
-A comprehensive WPF toolkit library that provides essential components for building modern Windows desktop applications with the MVVM pattern, logging capabilities, and configuration management.
+A comprehensive WPF toolkit library that provides essential components for building modern Windows desktop applications with the MVVM pattern, command infrastructure, logging capabilities, and configuration management.
 
 ## 📑 Table of Contents
 
@@ -16,6 +16,7 @@ A comprehensive WPF toolkit library that provides essential components for build
 - [Requirements](#requirements)
 - [Usage](#usage)
   - [MVVM Components](#mvvm-components)
+  - [Command Infrastructure](#command-infrastructure)
   - [Logging](#logging)
   - [Configuration Management](#configuration-management)
 - [API Reference](#api-reference)
@@ -33,6 +34,13 @@ A comprehensive WPF toolkit library that provides essential components for build
 - **ObservableObject**: Base class implementing `INotifyPropertyChanged` with helper methods
 - **BaseViewModel**: Feature-rich view model base class with common UI properties
 - **ObservableRangeCollection<T>**: Enhanced observable collection supporting bulk operations
+
+### Command Infrastructure
+- **CommandBase**: Abstract base class implementing `ICommand` interface
+- **RelayCommand**: Synchronous command with action and predicate support
+- **ActionCommand**: Flexible command implementation with parameter support
+- **AsyncCommandBase**: Abstract base for asynchronous command operations
+- **AsyncRelayCommand**: Async command with built-in exception handling
 
 ### Logging Infrastructure
 - **Serilog Integration**: Built-in support for structured logging
@@ -181,6 +189,441 @@ collection.Replace(singleItem);
 - `NotifyCollectionChangedAction.Add`: Notify for each added item (default)
 - `NotifyCollectionChangedAction.Reset`: Single reset notification
 
+### Command Infrastructure
+
+The toolkit provides a comprehensive set of command implementations for both synchronous and asynchronous operations in MVVM applications.
+
+#### CommandBase
+Abstract base class that implements `ICommand`:
+
+```csharp
+using DotNetTools.Wpfkit.Commands;
+
+public class MyCustomCommand : CommandBase
+{
+    public override void Execute(object? parameter)
+    {
+        // Your command logic here
+    }
+    
+    public override bool CanExecute(object? parameter)
+    {
+        // Return true if command can execute
+        return base.CanExecute(parameter);
+    }
+    
+    public void RaiseCanExecuteChanged()
+    {
+        OnCanExecuteChanged();
+    }
+}
+```
+**Features:**
+- Implements `ICommand` interface
+- Provides `CanExecuteChanged` event
+- Virtual `CanExecute` method (returns `true` by default)
+- Abstract `Execute` method for derived classes
+- Protected `OnCanExecuteChanged()` method to trigger re-evaluation
+
+#### ActionCommand
+Flexible command that accepts an action delegate and optional predicate:
+
+```csharp
+using DotNetTools.Wpfkit.Commands;
+
+public class MyViewModel : BaseViewModel
+{
+    public ICommand SaveCommand { get; }
+    public ICommand DeleteCommand { get; }
+    
+    public MyViewModel()
+    {
+        // Simple command
+        SaveCommand = new ActionCommand(
+            action: param => Save(param),
+            predicate: param => param != null && CanSave
+        );
+        
+        // Command with validation
+        DeleteCommand = new ActionCommand(
+            action: param => Delete((string)param),
+            predicate: param => param is string id && !string.IsNullOrEmpty(id)
+        );
+    }
+    
+    private bool CanSave => !string.IsNullOrEmpty(DataToSave);
+    private string DataToSave { get; set; }
+    
+    private void Save(object data)
+    {
+        // Save logic
+    }
+    
+    private void Delete(string id)
+    {
+        // Delete logic
+    }
+}
+```
+
+**Constructor Parameters:**
+- `action`: `Action<object>` - The method to execute (required)
+- `predicate`: `Predicate<object>?` - Condition to check if command can execute (optional)
+
+**Features:**
+- Integrates with `CommandManager.RequerySuggested` for automatic UI updates
+- Parameter validation through predicate
+- Throws `ArgumentNullException` if action is null
+
+#### RelayCommand
+Internal implementation extending `ActionCommand` with the same functionality:
+
+```csharp
+using DotNetTools.Wpfkit.Commands;
+
+// RelayCommand is internally used but provides the same API
+var command = new RelayCommand(
+    action: param => Console.WriteLine($"Executed with {param}"),
+    predicate: param => param != null
+);
+```
+
+#### AsyncCommandBase
+Abstract base class for asynchronous command operations with automatic execution state management:
+
+```csharp
+using DotNetTools.Wpfkit.Commands;
+
+public class LoadDataCommand : AsyncCommandBase
+{
+    private readonly DataService _dataService;
+    
+    public LoadDataCommand(DataService dataService, Action<Exception> onException) 
+        : base(onException)
+    {
+        _dataService = dataService;
+    }
+    
+    protected override async Task ExecuteAsync(object parameter)
+    {
+        // Long-running async operation
+        var data = await _dataService.LoadDataAsync();
+        
+        // Process data
+        await ProcessDataAsync(data);
+    }
+}
+```
+
+**Features:**
+- Prevents multiple concurrent executions (`IsExecuting` state)
+- Automatically disables command during execution
+- Built-in exception handling and logging (using TraceTool)
+- Invokes custom exception handler
+- Updates `CanExecute` state automatically
+
+**Constructor Parameters:**
+- `onException`: `Action<Exception>` - Callback invoked when an exception occurs
+
+#### AsyncRelayCommand
+Concrete implementation of async command for quick usage:
+
+```csharp
+using DotNetTools.Wpfkit.Commands;
+
+public class MyViewModel : BaseViewModel
+{
+    public ICommand LoadDataCommand { get; }
+    public ICommand SaveDataCommand { get; }
+    
+    public MyViewModel()
+    {
+        // Simple async command
+        LoadDataCommand = new AsyncRelayCommand(
+            callback: async () => await LoadDataAsync(),
+            onException: ex => ShowError(ex.Message)
+        );
+        
+        // Async command with complex logic
+        SaveDataCommand = new AsyncRelayCommand(
+            callback: async () => 
+            {
+                IsBusy = true;
+                try
+                {
+                    await SaveToServerAsync();
+                    await SaveToLocalAsync();
+                    ShowSuccess("Data saved successfully");
+                }
+                finally
+                {
+                    IsBusy = false;
+                }
+            },
+            onException: ex => 
+            {
+                Logger.Error(ex, "Failed to save data");
+                ShowError($"Save failed: {ex.Message}");
+            }
+        );
+    }
+    
+    private async Task LoadDataAsync()
+    {
+        // Load data from API
+        var data = await _apiClient.GetDataAsync();
+        Items.ReplaceRange(data);
+    }
+    
+    private async Task SaveToServerAsync()
+    {
+        await _apiClient.SaveAsync(Data);
+    }
+    
+    private async Task SaveToLocalAsync()
+    {
+        await _localDb.SaveAsync(Data);
+    }
+    
+    private void ShowError(string message) { /* ... */ }
+    private void ShowSuccess(string message) { /* ... */ }
+}
+```
+
+**Constructor Parameters:**
+- `callback`: `Func<Task>` - The async method to execute
+- `onException`: `Action<Exception>` - Exception handler
+
+**Key Benefits:**
+- No need to manage `IsExecuting` state manually
+- Built-in exception handling
+- Automatic `CanExecute` management
+- Prevents rapid clicking/double execution
+- Integrated logging for errors
+
+#### Complete ViewModel Example with Commands
+
+```csharp
+using DotNetTools.Wpfkit.MvvM;
+using DotNetTools.Wpfkit.Commands;
+using System.Windows.Input;
+
+public class CustomerViewModel : BaseViewModel
+{
+    private readonly ICustomerService _customerService;
+    private readonly IDialogService _dialogService;
+    
+    private string _searchText;
+    public string SearchText
+    {
+        get => _searchText;
+        set => SetProperty(ref _searchText, value);
+    }
+    
+    private Customer _selectedCustomer;
+    public Customer SelectedCustomer
+    {
+        get => _selectedCustomer;
+        set => SetProperty(ref _selectedCustomer, value);
+    }
+    
+    public ObservableRangeCollection<Customer> Customers { get; }
+    
+    // Commands
+    public ICommand LoadCustomersCommand { get; }
+    public ICommand SearchCommand { get; }
+    public ICommand SaveCommand { get; }
+    public ICommand DeleteCommand { get; }
+    public ICommand RefreshCommand { get; }
+    
+    public CustomerViewModel(ICustomerService customerService, IDialogService dialogService)
+    {
+        _customerService = customerService;
+        _dialogService = dialogService;
+        
+        Customers = new ObservableRangeCollection<Customer>();
+        
+        // Async command for loading data
+        LoadCustomersCommand = new AsyncRelayCommand(
+            callback: LoadCustomersAsync,
+            onException: HandleException
+        );
+        
+        // Sync command with parameter validation
+        SearchCommand = new ActionCommand(
+            action: param => SearchCustomers((string)param),
+            predicate: param => param is string text && !string.IsNullOrWhiteSpace(text)
+        );
+        
+        // Async command with condition
+        SaveCommand = new AsyncRelayCommand(
+            callback: SaveCustomerAsync,
+            onException: HandleException
+        );
+        
+        // Sync command with predicate
+        DeleteCommand = new ActionCommand(
+            action: param => DeleteCustomer(),
+            predicate: param => SelectedCustomer != null
+        );
+        
+        // Async refresh command
+        RefreshCommand = new AsyncRelayCommand(
+            callback: RefreshCustomersAsync,
+            onException: HandleException
+        );
+    }
+    
+    private async Task LoadCustomersAsync()
+    {
+        IsBusy = true;
+        Title = "Loading Customers...";
+        
+        try
+        {
+            var customers = await _customerService.GetAllAsync();
+            Customers.ReplaceRange(customers);
+            
+            Title = $"Customers ({Customers.Count})";
+        }
+        finally
+        {
+            IsBusy = false;
+        }
+    }
+    
+    private void SearchCustomers(string searchText)
+    {
+        var filtered = Customers.Where(c => 
+            c.Name.Contains(searchText, StringComparison.OrdinalIgnoreCase) ||
+            c.Email.Contains(searchText, StringComparison.OrdinalIgnoreCase)
+        ).ToList();
+        
+        Customers.ReplaceRange(filtered);
+    }
+    
+    private async Task SaveCustomerAsync()
+    {
+        if (SelectedCustomer == null) return;
+        
+        IsBusy = true;
+        try
+        {
+            await _customerService.SaveAsync(SelectedCustomer);
+            await _dialogService.ShowMessageAsync("Success", "Customer saved successfully");
+            await RefreshCustomersAsync();
+        }
+        finally
+        {
+            IsBusy = false;
+        }
+    }
+    
+    private void DeleteCustomer()
+    {
+        if (SelectedCustomer == null) return;
+        
+        Customers.Remove(SelectedCustomer);
+        SelectedCustomer = null;
+    }
+    
+    private async Task RefreshCustomersAsync()
+    {
+        await LoadCustomersAsync();
+    }
+    
+    private void HandleException(Exception ex)
+    {
+        IsBusy = false;
+        _dialogService.ShowError("Error", ex.Message);
+    }
+}
+```
+
+**XAML Binding Example:**
+```xml
+<Window x:Class="MyApp.CustomerView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Search Bar -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
+            <TextBox x:Name="SearchBox" Width="200" Margin="0,0,10,0"/>
+            <Button Content="Search" 
+                    Command="{Binding SearchCommand}" 
+                    CommandParameter="{Binding Text, ElementName=SearchBox}"/>
+            <Button Content="Refresh" 
+                    Command="{Binding RefreshCommand}" 
+                    Margin="10,0,0,0"/>
+        </StackPanel>
+        
+        <!-- Customer List -->
+        <DataGrid Grid.Row="1" 
+                  ItemsSource="{Binding Customers}"
+                  SelectedItem="{Binding SelectedCustomer}"
+                  AutoGenerateColumns="True"
+                  Margin="10"/>
+        
+        <!-- Action Buttons -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10">
+            <Button Content="Load Customers" 
+                    Command="{Binding LoadCustomersCommand}" 
+                    Width="120" 
+                    Margin="0,0,10,0"/>
+            <Button Content="Save" 
+                    Command="{Binding SaveCommand}" 
+                    Width="80" 
+                    Margin="0,0,10,0"/>
+            <Button Content="Delete" 
+                    Command="{Binding DeleteCommand}" 
+                    Width="80"/>
+        </StackPanel>
+        
+        <!-- Loading Indicator -->
+        <ProgressBar Grid.Row="1" 
+                     IsIndeterminate="True" 
+                     Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}}"
+                     Height="5" 
+                     VerticalAlignment="Top"/>
+    </Grid>
+</Window>
+```
+
+#### Command Best Practices
+
+1. **Choose the Right Command Type:**
+   - Use `ActionCommand` for simple synchronous operations
+   - Use `AsyncRelayCommand` for async operations (API calls, database operations)
+   - Extend `CommandBase` or `AsyncCommandBase` for complex custom logic
+
+2. **Exception Handling:**
+   - Always provide an exception handler for async commands
+   - Log exceptions appropriately
+   - Show user-friendly error messages
+   - Consider retry logic for transient failures
+
+3. **UI State Management:**
+   - Use `IsBusy` property during long operations
+   - `AsyncCommandBase` automatically prevents concurrent execution
+   - Update UI elements to reflect command state
+
+4. **Parameter Validation:**
+   - Use predicates to validate command parameters
+   - Return `false` from `CanExecute` to disable UI elements
+   - Validate parameter types before casting
+
+5. **Memory Management:**
+   - Commands hold references to delegates and view models
+   - Be careful with closures capturing large objects
+   - Consider weak references for event handlers if needed
+
 ### Logging
 
 #### Setting Up the Logger
@@ -298,111 +741,59 @@ void ReplaceRange(IEnumerable<T> collection)
 
 ```
 
-### Logging Namespace
+### Commands Namespace
 
-#### LogManager
+#### CommandBase
 
 ```csharp
-
-static ILogger GetCurrentClassLogger()
-static ILogger Me(this ILogger logger, int sourceLineNumber = 0)
-
+public abstract class CommandBase : ICommand
+{
+    public event EventHandler? CanExecuteChanged;
+    public virtual bool CanExecute(object? parameter);
+    public abstract void Execute(object? parameter);
+    protected void OnCanExecuteChanged();
+}
 ```
 
-### Database Namespace
+#### ActionCommand
 
-#### AppSettingsUpdater
 ```csharp
-static void UpdateConnectionString(string connectionString)
+public class ActionCommand : ICommand
+{
+    public ActionCommand(Action<object> action, Predicate<object>? predicate = null);
+    public bool CanExecute(object? parameter);
+    public void Execute(object? parameter);
+    public event EventHandler? CanExecuteChanged;
+}
 ```
 
-## 🏗️ Architecture
+#### AsyncCommandBase
 
-### Project Structure
-
-```
-DotNetTools.Wpfkit/
-├── MvvM/
-|   ├── ObservableObject.cs          # Base observable implementation
-|   ├── BaseViewModel.cs             # Rich view model base class
-|   ├── ObservableRangeCollection.cs # Bulk operations collection
-├── Logging/
-|   ├── Extensions/
-|   |   └── LogManager.cs            # Logger factory
-|   |   └── UserName.cs              # Username helper
-|   └── Enrichers/
-|       └── UserNameEnricher.cs      # Serilog enricher
-├── Database/
-|   └── AppSettingsUpdater.cs        # Configuration management
-└── DotNetTools.Wpfkit.csproj
-
+```csharp
+public abstract class AsyncCommandBase : CommandBase
+{
+    public AsyncCommandBase(Action<Exception> onException);
+    protected abstract Task ExecuteAsync(object parameter);
+    public override bool CanExecute(object? parameter);
+    public override void Execute(object? parameter);
+}
 ```
 
-### Design Principles
-- **SOLID Principles**: Clean, maintainable code architecture
-- **Separation of Concerns**: Each component has a single responsibility
-- **Reusability**: Generic, flexible implementations
-- **Performance**: Optimized bulk operations in collections
-- **Type Safety**: Leverages nullable reference types
+#### AsyncRelayCommand
 
-## 🤝 Contributing
+```csharp
+public class AsyncRelayCommand : AsyncCommandBase
+{
+    public AsyncRelayCommand(Func<Task> callback, Action<Exception> onException);
+    protected override Task ExecuteAsync(object parameter);
+}
+```
 
-Contributions are welcome! Please follow these guidelines:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-### Coding Standards
-- Follow C# coding conventions
-- Use meaningful variable and method names
-- Add XML documentation comments
-- Include unit tests for new features
-- Maintain the existing copyright header format
-
-## 📜 License
-
-Copyright © 2025 **Omotech Digital Solutions**  
-Licensed under the [MIT License](LICENSE).
-
-This project is open source software created by [Stanley Omoregie](mailto:stan@omotech.com).
-
-## 📧 Contact
-
-**Author**: [Stanley Omoregie](mailto:stan@omotech.com)  
-**Organization**: Omotech Digital Solutions  
-**Created**: November 20, 2025
-
-For questions, issues, or feature requests, please open an issue on the repository.
-
----
-
-## 🔖 Version History
-
-### Version 1.0.0 (2025-11-20)
-- Initial release
-- MVVM pattern components (ObservableObject, BaseViewModel, ObservableRangeCollection)
-- Serilog logging integration
-- AppSettings configuration management
-- .NET 10.0 support
-
----
-
-## 📖 Learning Resources
-
-### WPF & MVVM
-- [Microsoft WPF Documentation](https://docs.microsoft.com/wpf)
-- [MVVM Pattern Guide](https://docs.microsoft.com/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern)
-
-### Serilog
-- [Serilog Official Documentation](https://serilog.net/)
-- [Structured Logging Concepts](https://nblumhardt.com/2016/06/structured-logging-concepts-in-net-series-1/)
-
-### .NET 10
-- [What's New in .NET 10](https://docs.microsoft.com/dotnet/core/whats-new/dotnet-10)
-
----
-
-**Built with ❤️ using .NET 10.0 and modern C# features**
+**Command Comparison Table:**
+| Command Type | Sync/Async | Use Case | Exception Handling | Concurrent Execution Prevention |
+|--------------|------------|----------|--------------------|---------------------------------|
+| CommandBase | Sync | Base for custom commands | Manual | No |
+| ActionCommand | Sync | Simple actions with parameters | Manual | No |
+| RelayCommand | Sync | Internal relay implementation | Manual | No |
+| AsyncCommandBase | Async | Base for async commands | Built-in | Yes |
+| AsyncRelayCommand | Async | Async operations | Built-in | Yes |

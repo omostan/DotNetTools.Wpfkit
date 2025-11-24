@@ -5,7 +5,6 @@
     <File Path="APP_MODERNIZATION_REFERENCE.md" />
     <File Path="CONTRIBUTING.md" />
     <File Path="DotNetTools.slnx.licenseheader" />
-    <File Path="DotNetTools.WpfKit.Tests/README.md" />
     <File Path="DotNetTools.WpfKit/ICON_GUIDE.md" />
     <File Path="MODERNIZATION_SUMMARY.md" />
     <File Path="NUGET_API_KEY_TROUBLESHOOTING.md" />

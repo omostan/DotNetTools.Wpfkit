@@ -21,10 +21,17 @@ dotnet add package DotNetTools.Wpfkit
 A comprehensive WPF toolkit library providing essential components for building modern Windows desktop applications.
 
 **Key Features:**
-- MVVM pattern components (ObservableObject, BaseViewModel, ObservableRangeCollection)
-- Serilog logging integration with context-aware extensions
-- Configuration management utilities
-- .NET 10.0 support with modern C# features
+- **MVVM Components**: ObservableObject, BaseViewModel, ObservableRangeCollection
+- **Command Infrastructure**: Complete sync/async command implementations (ActionCommand, AsyncRelayCommand)
+- **Logging Integration**: Serilog with context-aware extensions
+- **Configuration Management**: Runtime appsettings.json utilities
+- **.NET 10.0 Support**: Modern C# features with nullable reference types
+
+**✨ New in v1.0.2:**
+- 🎯 Complete command infrastructure for MVVM applications
+- ⚡ Async command support with automatic execution state management
+- 🔒 Built-in concurrent execution prevention
+- 🎨 Simplified command creation with less boilerplate
 
 [View Library README](./DotNetTools.WpfKit/README.md)
 
@@ -61,6 +68,7 @@ DotNetTools/
 ├── DotNetTools.slnx               # Solution file
 ├── DotNetTools.WpfKit/            # WPF Toolkit library
 │   ├── MvvM/                      # MVVM components
+│   ├── Commands/                  # Command infrastructure (NEW!)
 │   ├── Logging/                   # Logging utilities
 │   ├── Database/                  # Configuration management
 │   └── README.md                  # Library documentation
@@ -96,6 +104,8 @@ This solution uses `.editorconfig` to maintain consistent code style across the 
 ## 📚 Documentation
 
 - [DotNetTools.Wpfkit Library Documentation](./DotNetTools.WpfKit/README.md)
+- [Quick Start Guide](./QUICK_START.md)
+- [Release Notes v1.0.2 - Commands](./release-notes-v1.0.2.md)
 
 ## 🤝 Contributing
 
