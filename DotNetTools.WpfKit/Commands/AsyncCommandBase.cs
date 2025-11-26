@@ -26,14 +26,17 @@ using TraceTool;
 
 namespace DotNetTools.Wpfkit.Commands;
 
+/// <summary>
+/// Abstract base class for asynchronous command operations with automatic execution state management.
+/// </summary>
 public abstract class AsyncCommandBase(Action<Exception> onException) : CommandBase
 {
     #region Properties
 
     /// <summary>
-    /// An instance of the exception thrown
+    /// An instance of the exception handler
     /// </summary>
-    private readonly Action<Exception> _onException = onException;
+    private readonly Action<Exception> _onException = onException ?? throw new ArgumentNullException(nameof(onException), "Exception handler cannot be null.");
 
     /// <summary>
     /// When implemented in a derived class, executes the command logic asynchronously.
@@ -61,9 +64,13 @@ public abstract class AsyncCommandBase(Action<Exception> onException) : CommandB
 
     #region CanExecute
 
+    /// <summary>
+    /// Determines whether the command can execute.
+    /// Returns false while the command is executing to prevent concurrent execution.
+    /// </summary>
     public override bool CanExecute(object? parameter)
     {
-        return !IsExecuting; // && base.CanExecute(parameter);
+        return !IsExecuting;
     }
 
     #endregion CanExecute

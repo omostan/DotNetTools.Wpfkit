@@ -24,4 +24,8 @@
 
 namespace DotNetTools.Wpfkit.Commands;
 
-public class RelayCommand(Action<object> action, Predicate<object>? predicate = null) : ActionCommand(action, predicate);
+/// <summary>
+/// A synchronous command implementation that relays execution to delegates.
+/// Provides a convenient way to create commands with actions and optional predicates.
+/// </summary>
+public class RelayCommand(Action<object?> action, Predicate<object?>? predicate = null) : ActionCommand(action, predicate);
