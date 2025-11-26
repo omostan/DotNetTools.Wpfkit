@@ -31,6 +31,61 @@ A comprehensive WPF toolkit library that provides essential components for build
 
 ## 🎉 What's New
 
+### Version 1.0.5 (Documentation Update) 📝
+**Released:** November 2025
+
+ℹ️ **Note:** This is a documentation-only release. Functionally identical to v1.0.4.
+
+**Changes:**
+- **Fixed:** Corrected release date from January to November 2025 in documentation
+- **No Code Changes:** All functionality identical to v1.0.4
+- **Migration:** Optional update - no functional differences
+
+**If you're using v1.0.4:** You can continue using it, or update to v1.0.5 for corrected documentation.
+
+```bash
+# Optional update - documentation only
+dotnet add package DotNetTools.Wpfkit --version 1.0.5
+```
+
+---
+
+### Version 1.0.4 (CRITICAL HOTFIX) 🚨
+**Released:** November 2025
+
+⚠️ **IMPORTANT:** This is a critical hotfix that addresses a production-breaking bug. All users should upgrade immediately.
+
+**Critical Bug Fix:**
+- **Fixed:** NullReferenceException in `ActionCommand.CanExecute` method
+- **Added:** Proper null handling for command parameters
+- **Added:** Try-catch block for graceful error recovery
+- **Added:** Constructor parameter validation in `AsyncCommandBase` and `AsyncRelayCommand`
+- **Added:** Comprehensive unit tests (187 tests total)
+- **Impact:** Prevents application crashes during UI initialization, particularly in DataGrid and complex UI scenarios
+
+**Affected Components:**
+- `ActionCommand.CanExecute` (core fix)
+- `AsyncCommandBase` (null validation)
+- `AsyncRelayCommand` (null validation)
+- `RelayCommand` (inherits fix from ActionCommand)
+
+**Test Coverage:**
+- ActionCommandTests.cs (50+ tests)
+- RelayCommandTests.cs (40+ tests)
+- AsyncRelayCommandTests.cs (60+ tests)
+
+**Breaking Changes:** None - Drop-in replacement, no code changes required
+
+**Migration:** Simply update your package version. No code changes needed.
+
+```bash
+dotnet add package DotNetTools.Wpfkit --version 1.0.4
+```
+
+**See Also:** [Release Notes v1.0.4](release-notes-v1.0.4.md) for detailed information.
+
+---
+
 ### Version 1.0.3
 - **🐛 Bug Fix:** `RelayCommand` is now properly `public` and accessible to developers
 - **✅ Improved API:** Full access to all command implementations for MVVM applications
@@ -67,19 +122,25 @@ A comprehensive WPF toolkit library that provides essential components for build
 ## 📦 Installation
 
 ### NuGet Package
+
+**Latest Version (v1.0.5):**
 ```bash
-dotnet add package DotNetTools.Wpfkit
+dotnet add package DotNetTools.Wpfkit --version 1.0.5
 ```
 
 Or via Package Manager Console in Visual Studio:
 ```bash
-Install-Package DotNetTools.Wpfkit
+Install-Package DotNetTools.Wpfkit -Version 1.0.5
 ```
 
 Or add directly to your `.csproj`:
 ```xml
-<PackageReference Include="DotNetTools.Wpfkit" Version="1.0.0" />
+<PackageReference Include="DotNetTools.Wpfkit" Version="1.0.5" />
 ```
+
+ℹ️ **Note:** v1.0.5 is a documentation update. v1.0.4 contains the critical bug fix.
+
+⚠️ **Important:** v1.0.3 and earlier contain a critical bug. Please use v1.0.4 or v1.0.5.
 
 ### Manual Installation
 1. Clone the repository

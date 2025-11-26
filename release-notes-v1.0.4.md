@@ -1,6 +1,6 @@
 # Release Notes - v1.0.4 (CRITICAL HOTFIX)
 
-**Release Date:** January 2025  
+**Release Date:** November 2025  
 **Package:** DotNetTools.Wpfkit  
 **Version:** 1.0.4  
 **Type:** Critical Hotfix

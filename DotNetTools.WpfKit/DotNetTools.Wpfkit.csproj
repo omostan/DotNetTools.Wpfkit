@@ -12,9 +12,9 @@
     <Title>DotNetTools WPF Toolkit</Title>
     <Description>A comprehensive WPF toolkit library providing MVVM components, command infrastructure, logging utilities, and configuration management for modern Windows desktop applications. Now includes complete sync/async command implementations with automatic state management and exception handling.</Description>
     <PackageTags>wpf;mvvm;toolkit;observable;viewmodel;commands;icommand;async;serilog;logging;dotnet10;windows;observablecollection;inotifypropertychanged;relaycommand;asynccommand</PackageTags>
-    <Version>1.0.4</Version>
-    <AssemblyVersion>1.0.4.0</AssemblyVersion>
-    <FileVersion>1.0.4.0</FileVersion>
+    <Version>1.0.5</Version>
+    <AssemblyVersion>1.0.5.0</AssemblyVersion>
+    <FileVersion>1.0.5.0</FileVersion>
     
     <!-- Author and Company Information -->
     <Authors>Stanley Omoregie</Authors>
@@ -31,7 +31,7 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     
     <!-- Release Notes -->
-    <PackageReleaseNotes>v1.0.4: CRITICAL FIX - Resolved NullReferenceException in ActionCommand.CanExecute when parameter is null. Added proper null handling and error recovery. See release-notes-v1.0.4.md for details.</PackageReleaseNotes>
+    <PackageReleaseNotes>v1.0.5: Documentation update for v1.0.4 hotfix (corrected release date to November 2025). Functionally identical to v1.0.4 - same critical NullReferenceException fix. See release-notes-v1.0.4.md for technical details.</PackageReleaseNotes>
     
     <!-- Additional Metadata -->
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
