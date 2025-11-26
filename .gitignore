@@ -124,3 +124,25 @@ test-async-fix.sh
 test-async-fix.ps1
 publish-v1.0.5-docs.sh
 release-v1.0.5.sh
+
+# v1.0.5 Release Documentation (Local only)
+HOTFIX_v1.0.4_SUMMARY.md
+QUICKREF_v1.0.4.md
+v1.0.4_STATUS_REPORT.md
+TEST_FIX_v1.0.4.md
+v1.0.4_CLEANUP_SUMMARY.md
+SCRIPT_UPDATE_SUMMARY.md
+FINAL_SCRIPT_UPDATE.md
+README_UPDATE_NUGET_GUIDE.md
+v1.0.5_README_UPDATE_SUMMARY.md
+NUGET_REPUBLISH_GUIDE.md
+hotfix-v1.0.4.sh
+hotfix-v1.0.4.ps1
+run-tests-v1.0.4.sh
+run-tests-v1.0.4.ps1
+test-async-fix.sh
+test-async-fix.ps1
+publish-v1.0.5-docs.sh
+release-v1.0.5.sh
+RELEASE_SCRIPT_SUMMARY.md
+RELEASE_v1.0.5_GUIDE.md
