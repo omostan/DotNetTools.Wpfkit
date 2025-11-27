@@ -1,4 +1,4 @@
-﻿#region copyright
+#region copyright
 
 /*****************************************************************************************
 *                                     ______________________________________________     *
@@ -27,10 +27,25 @@ using Serilog.Events;
 
 namespace DotNetTools.Wpfkit.Logging.Enrichers;
 
+/// <summary>
+/// A Serilog log event enricher that adds the current user's username to log events.
+/// The username is retrieved from the "UserName" environment variable and cached for performance.
+/// </summary>
+/// <remarks>
+/// This enricher implements <see cref="ILogEventEnricher"/> and adds a "UserName" property
+/// to each log event. The property value is cached after the first retrieval to avoid
+/// repeated environment variable lookups.
+/// </remarks>
 public class UserNameEnricher : ILogEventEnricher
 {
+    #region Fields
+
     private LogEventProperty? _cachedProperty;
     private const string PropertyName = "UserName";
+
+    #endregion
+
+    #region Enrich
 
     /// <summary>
     /// Enriches the log event by adding the username as a property.
@@ -45,6 +60,10 @@ public class UserNameEnricher : ILogEventEnricher
         logEvent.AddPropertyIfAbsent(GetLogEventProperty(propertyFactory));
     }
 
+    #endregion
+
+    #region GetLogEventProperty
+
     private LogEventProperty GetLogEventProperty(ILogEventPropertyFactory propertyFactory)
     {
         if (_cachedProperty != null)
@@ -56,9 +75,15 @@ public class UserNameEnricher : ILogEventEnricher
         return _cachedProperty;
     }
 
+    #endregion
+
+    #region CreateProperty
+
     private static LogEventProperty CreateProperty(ILogEventPropertyFactory propertyFactory)
     {
         string value = Environment.GetEnvironmentVariable("UserName")?.ToLower() ?? string.Empty;
         return propertyFactory.CreateProperty(PropertyName, value);
     }
+
+    #endregion
 }

@@ -1,4 +1,4 @@
-﻿#region copyright
+#region copyright
 
 /*****************************************************************************************
 *                                     ______________________________________________     *
@@ -28,8 +28,13 @@ using System.Runtime.CompilerServices;
 
 namespace DotNetTools.Wpfkit.Logging.Extensions;
 
+/// <summary>
+/// Provides logging management utilities for creating and configuring Serilog loggers.
+/// </summary>
 public static class LogManager
 {
+    #region GetCurrentClassLogger
+
     /// <summary>
     /// Gets the logger for the current class. Ensure this is set to a static field on the class.
     /// </summary>
@@ -41,6 +46,10 @@ public static class LogManager
         return Log.ForContext(new StackFrame(1, false).GetMethod()?.DeclaringType!);
     }
 
+    #endregion
+
+    #region Me
+
     public static ILogger Me(this ILogger logger,
         //[CallerMemberName] string memberName = "",
         //[CallerFilePath] string sourceFilePath = "",
@@ -51,4 +60,6 @@ public static class LogManager
             //.ForContext("FilePath", sourceFilePath)
             .ForContext("LineNumber", sourceLineNumber);
     }
+
+    #endregion
 }

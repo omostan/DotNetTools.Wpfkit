@@ -30,7 +30,13 @@ namespace DotNetTools.Wpfkit.Commands;
 /// </summary>
 public class AsyncRelayCommand(Func<Task> callback, Action<Exception> onException) : AsyncCommandBase(onException)
 {
+    #region Fields
+
     private readonly Func<Task> _callback = callback ?? throw new ArgumentNullException(nameof(callback), "Callback cannot be null.");
+
+    #endregion
+
+    #region ExecuteAsync
 
     /// <summary>
     /// Executes the async callback provided in the constructor.
@@ -41,4 +47,6 @@ public class AsyncRelayCommand(Func<Task> callback, Action<Exception> onExceptio
     {
         await _callback();
     }
+
+    #endregion
 }

@@ -1,4 +1,4 @@
-﻿#region copyright
+#region copyright
 
 /*****************************************************************************************
 *                                     ______________________________________________     *
@@ -35,6 +35,8 @@ namespace DotNetTools.Wpfkit.MvvM;
 public class ObservableRangeCollection<T> : ObservableCollection<T>
 {
 
+    #region Constructors
+
     /// <summary> 
     /// Initializes a new instance of the System.Collections.ObjectModel.ObservableCollection(Of T) class. 
     /// </summary> 
@@ -47,10 +49,13 @@ public class ObservableRangeCollection<T> : ObservableCollection<T>
     /// </summary> 
     /// <param name="collection">collection: The collection from which the elements are copied.</param> 
     /// <exception cref="System.ArgumentNullException">The collection parameter cannot be null.</exception>
-    public ObservableRangeCollection(IEnumerable<T> collection)
-        : base(collection)
+    public ObservableRangeCollection(IEnumerable<T> collection) : base(collection)
     {
     }
+
+    #endregion
+
+    #region AddRange
 
     /// <summary> 
     /// Adds the elements of the specified collection to the end of the ObservableCollection(Of T). 
@@ -88,6 +93,10 @@ public class ObservableRangeCollection<T> : ObservableCollection<T>
             changedItems: changedItems,
             startingIndex: startIndex);
     }
+
+    #endregion
+
+    #region RemoveRange
 
     /// <summary> 
     /// Removes the first occurence of each item in the specified collection from ObservableCollection(Of T). NOTE: with notificationMode = Remove, removed items starting index is not set because items are not guaranteed to be consecutive.
@@ -141,10 +150,18 @@ public class ObservableRangeCollection<T> : ObservableCollection<T>
         }
     }
 
+    #endregion
+
+    #region Replace
+
     /// <summary> 
     /// Clears the current collection and replaces it with the specified item. 
     /// </summary> 
     public void Replace(T item) => ReplaceRange([item]);
+
+    #endregion
+
+    #region ReplaceRange
 
     /// <summary> 
     /// Clears the current collection and replaces it with the specified collection. 
@@ -174,6 +191,10 @@ public class ObservableRangeCollection<T> : ObservableCollection<T>
         }
     }
 
+    #endregion
+
+    #region AddArrangeCore
+
     private bool AddArrangeCore(IEnumerable<T> collection)
     {
         bool itemAdded = false;
@@ -185,6 +206,10 @@ public class ObservableRangeCollection<T> : ObservableCollection<T>
         return itemAdded;
     }
 
+    #endregion
+
+    #region RaiseChangeNotificationEvents
+
     private void RaiseChangeNotificationEvents(NotifyCollectionChangedAction action, List<T>? changedItems = null, int startingIndex = -1)
     {
         OnPropertyChanged(new PropertyChangedEventArgs(nameof(Count)));
@@ -194,5 +219,7 @@ public class ObservableRangeCollection<T> : ObservableCollection<T>
             ? new NotifyCollectionChangedEventArgs(action)
             : new NotifyCollectionChangedEventArgs(action, changedItems: changedItems, startingIndex: startingIndex));
     }
+
+    #endregion
 }
 

@@ -26,11 +26,22 @@ using System.Windows.Input;
 
 namespace DotNetTools.Wpfkit.Commands;
 
+/// <summary>
+/// Represents a command that executes an action with an optional condition.
+/// This command implements <see cref="ICommand"/> and integrates with WPF's command infrastructure.
+/// </summary>
+/// <param name="action">The action to execute when the command is invoked. Must not be null.</param>
+/// <param name="predicate">An optional predicate that determines whether the command can execute. If null, the command can always execute.</param>
+/// <exception cref="ArgumentNullException">Thrown when <paramref name="action"/> is null.</exception>
 public class ActionCommand(Action<object?> action, Predicate<object?>? predicate = null) : ICommand
 {
+    #region Fields
+
     private readonly Action<object?> _action = action ?? throw new ArgumentNullException(nameof(action), "You must specify an Action<T>.");
 
     private readonly Predicate<object?>? _predicate = predicate;
+
+    #endregion
 
     #region Implementation of ICommand
 

@@ -1,4 +1,4 @@
-﻿#region copyright
+#region copyright
 
 /*****************************************************************************************
 *                                     ______________________________________________     *
@@ -31,6 +31,9 @@ using TraceTool;
 
 namespace DotNetTools.Wpfkit.Database;
 
+/// <summary>
+/// Provides utility methods for updating application settings in the appsettings.json file.
+/// </summary>
 public static class AppSettingsUpdater
 {
     #region Fields

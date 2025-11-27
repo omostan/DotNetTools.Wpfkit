@@ -13,7 +13,7 @@
 *       Modified Date: 21.11.2025                                                        *
 *          Created By: Stanley Omoregie                                                  *
 *    Last Modified By: Stanley Omoregie                                                  *
-*           CopyRight: copyright © 2025 Omotech Digital Solutions                        *
+*           CopyRight: copyright Â© 2025 Omotech Digital Solutions                        *
 *                  .oooO  Oooo.                                                          *
 *                  (   )  (   )                                                          *
 * ------------------\ (----) /---------------------------------------------------------- *
@@ -518,7 +518,7 @@ public class BaseViewModelTests
         viewModel.Subtitle = "Welcome";
         viewModel.Icon = "app-icon.png";
         viewModel.Header = "Dashboard";
-        viewModel.Footer = "© 2025";
+        viewModel.Footer = "Â© 2025";
         viewModel.IsBusy = true;
         viewModel.CanLoadMore = false;
 
@@ -527,7 +527,7 @@ public class BaseViewModelTests
         viewModel.Subtitle.Should().Be("Welcome");
         viewModel.Icon.Should().Be("app-icon.png");
         viewModel.Header.Should().Be("Dashboard");
-        viewModel.Footer.Should().Be("© 2025");
+        viewModel.Footer.Should().Be("Â© 2025");
         viewModel.IsBusy.Should().BeTrue();
         viewModel.IsNotBusy.Should().BeFalse();
         viewModel.CanLoadMore.Should().BeFalse();

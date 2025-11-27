@@ -1,4 +1,4 @@
-﻿#region copyright
+#region copyright
 
 /*****************************************************************************************
 *                                     ______________________________________________     *
@@ -24,8 +24,18 @@
 
 namespace DotNetTools.Wpfkit.MvvM;
 
+/// <summary>
+/// Provides a base implementation for view models in MVVM pattern with common properties.
+/// </summary>
+/// <remarks>
+/// This class extends <see cref="ObservableObject"/> and provides standard properties commonly used
+/// in WPF view models, including title, subtitle, icon, busy state indicators, header, footer,
+/// and load more functionality.
+/// </remarks>
 public class BaseViewModel : ObservableObject
 {
+    #region Title
+
     string _title = string.Empty;
 
     /// <summary>
@@ -37,6 +47,10 @@ public class BaseViewModel : ObservableObject
         get => _title;
         set => SetProperty(ref _title, value);
     }
+
+    #endregion
+
+    #region Subtitle
 
     string _subtitle = string.Empty;
 
@@ -50,6 +64,10 @@ public class BaseViewModel : ObservableObject
         set => SetProperty(ref _subtitle, value);
     }
 
+    #endregion
+
+    #region Icon
+
     string _icon = string.Empty;
 
     /// <summary>
@@ -61,6 +79,10 @@ public class BaseViewModel : ObservableObject
         get => _icon;
         set => SetProperty(ref _icon, value);
     }
+
+    #endregion
+
+    #region IsBusy
 
     bool _isBusy;
 
@@ -78,6 +100,10 @@ public class BaseViewModel : ObservableObject
         }
     }
 
+    #endregion
+
+    #region IsNotBusy
+
     bool _isNotBusy = true;
 
     /// <summary>
@@ -94,6 +120,10 @@ public class BaseViewModel : ObservableObject
         }
     }
 
+    #endregion
+
+    #region CanLoadMore
+
     bool _canLoadMore = true;
 
     /// <summary>
@@ -106,6 +136,9 @@ public class BaseViewModel : ObservableObject
         set => SetProperty(ref _canLoadMore, value);
     }
 
+    #endregion
+    
+    #region Header
 
     string _header = string.Empty;
 
@@ -119,6 +152,10 @@ public class BaseViewModel : ObservableObject
         set => SetProperty(ref _header, value);
     }
 
+    #endregion
+
+    #region Footer
+
     string _footer = string.Empty;
 
     /// <summary>
@@ -130,4 +167,6 @@ public class BaseViewModel : ObservableObject
         get => _footer;
         set => SetProperty(ref _footer, value);
     }
+
+    #endregion
 }

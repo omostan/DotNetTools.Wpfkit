@@ -31,10 +31,16 @@ namespace DotNetTools.Wpfkit.Commands;
 /// </summary>
 public abstract class CommandBase : ICommand
 {
+    #region CanExecuteChanged
+
     /// <summary>
     /// Occurs when changes occur that affect whether the command should execute.
     /// </summary>
     public event EventHandler? CanExecuteChanged;
+
+    #endregion
+
+    #region CanExecute
 
     /// <summary>
     /// Determines whether the command can execute in its current
@@ -46,11 +52,19 @@ public abstract class CommandBase : ICommand
         return true;
     }
 
+    #endregion
+
+    #region Execute
+
     /// <summary>
     /// Defines the method to be called when the command is invoked.
     /// </summary>
     /// <param name="parameter"></param>
     public abstract void Execute(object? parameter);
+
+    #endregion
+
+    #region OnCanExecuteChanged
 
     /// <summary>
     /// Invoked the command when the command can execute.
@@ -59,4 +73,6 @@ public abstract class CommandBase : ICommand
     {
         CanExecuteChanged?.Invoke(this, EventArgs.Empty);
     }
+
+    #endregion
 }

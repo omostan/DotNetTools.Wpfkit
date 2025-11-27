@@ -1,4 +1,4 @@
-﻿#region copyright
+#region copyright
 
 /*****************************************************************************************
 *                                     ______________________________________________     *
@@ -28,10 +28,23 @@ using Serilog.Configuration;
 
 namespace DotNetTools.Wpfkit.Logging.Extensions;
 
+/// <summary>
+/// Provides extension methods for enriching Serilog logs with user name information.
+/// </summary>
 public static class UserName
 {
+    #region WithUserName
+
+    /// <summary>
+    /// Enriches log events with the current user's name using the <see cref="UserNameEnricher"/>
+    /// </summary>
+    /// <param name="enrich">The logger enrichment configuration to extend.</param>
+    /// <returns>The logger configuration for method chaining.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="enrich"/> is null.</exception>
     public static LoggerConfiguration WithUserName(this LoggerEnrichmentConfiguration enrich)
     {
         return enrich == null ? throw new ArgumentNullException(nameof(enrich)) : enrich.With<UserNameEnricher>();
     }
+
+    #endregion
 }

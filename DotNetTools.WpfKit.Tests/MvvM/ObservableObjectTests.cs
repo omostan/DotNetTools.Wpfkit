@@ -13,7 +13,7 @@
 *       Modified Date: 21.11.2025                                                        *
 *          Created By: Stanley Omoregie                                                  *
 *    Last Modified By: Stanley Omoregie                                                  *
-*           CopyRight: copyright © 2025 Omotech Digital Solutions                        *
+*           CopyRight: copyright Â© 2025 Omotech Digital Solutions                        *
 *                  .oooO  Oooo.                                                          *
 *                  (   )  (   )                                                          *
 * ------------------\ (----) /---------------------------------------------------------- *
